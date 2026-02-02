@@ -56,14 +56,6 @@ const Hero = () => {
           GEA Energy
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-xl md:text-2xl lg:text-3xl text-primary-foreground/90 mb-8 font-light max-w-3xl mx-auto"
-        >
-          Soluzioni di efficienza energetica
-        </motion.p>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}

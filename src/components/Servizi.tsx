@@ -1,42 +1,30 @@
 import { motion } from "framer-motion";
-import { Sun, Thermometer, FileCheck, Lightbulb, Building, Wrench } from "lucide-react";
+import { Sun, Lightbulb, Building, Wrench } from "lucide-react";
 
 const services = [
   {
     icon: Sun,
-    title: "Fotovoltaico",
-    description: "Progettazione e installazione di impianti fotovoltaici residenziali e industriali con accumulo.",
-    features: ["Impianti fino a 10kW+", "Sistemi con accumulo", "Manutenzione e monitoraggio"],
-  },
-  {
-    icon: Thermometer,
-    title: "Solare Termico",
-    description: "Impianti solari termici a circolazione naturale e forzata per acqua calda sanitaria.",
-    features: ["Circolazione naturale", "Circolazione forzata", "Integrazione con caldaia"],
-  },
-  {
-    icon: FileCheck,
-    title: "Verifiche SPI",
-    description: "Verifiche del Sistema di Protezione d'Interfaccia con cassetta prova relè.",
-    features: ["Impianti MT e BT", "Conformità normativa", "Certificazioni ufficiali"],
+    title: "Rinnovabili",
+    description: "Progettazione e sviluppo di impianti da fonti rinnovabili per la produzione di energia pulita.",
+    features: ["Fotovoltaico", "Eolico", "Biomassa", "Biogas", "Idrogeno", "Idroelettrico"],
   },
   {
     icon: Lightbulb,
-    title: "Consulenza Energetica",
-    description: "Analisi e ottimizzazione dei consumi energetici per ridurre costi e impatto ambientale.",
-    features: ["Audit energetici", "Diagnosi certificata", "Piano di interventi"],
-  },
-  {
-    icon: Building,
-    title: "Servizi per PA",
-    description: "Soluzioni smart city per la Pubblica Amministrazione con illuminazione LED intelligente.",
-    features: ["Lampade solari LED", "Finanziamento zero", "Smart city solutions"],
+    title: "Efficienza Energetica",
+    description: "Soluzioni per ottimizzare i consumi e accedere agli incentivi statali.",
+    features: ["Bonus edilizi", "Conto termico", "Residenziale", "PMI", "Pubblica Amministrazione"],
   },
   {
     icon: Wrench,
-    title: "Autorizzazioni",
-    description: "Supporto per autorizzazioni ambientali e pratiche per attività produttive.",
-    features: ["Autorizzazioni scarico", "Pratiche ambientali", "Consulenza normativa"],
+    title: "Installazione Fotovoltaico e O&M",
+    description: "Installazione professionale di impianti fotovoltaici e servizi di Operation & Maintenance.",
+    features: ["Installazione chiavi in mano", "Manutenzione ordinaria", "Manutenzione straordinaria"],
+  },
+  {
+    icon: Building,
+    title: "Servizi di Ingegneria",
+    description: "Progettazione multidisciplinare per interventi edilizi, ambientali e idraulici.",
+    features: ["Progettazione edile", "Progettazione ambientale", "Progettazione idraulica"],
   },
 ];
 
@@ -63,7 +51,7 @@ const Servizi = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
