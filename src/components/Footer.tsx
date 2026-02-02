@@ -1,7 +1,9 @@
 import { Mail } from "lucide-react";
 import logoGea from "@/assets/logo-gea.jpg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -16,7 +18,7 @@ const Footer = () => {
               className="h-10 w-auto brightness-0 invert"
             />
             <p className="text-background/60 text-sm">
-              ESCO • Società di Ingegneria
+              ESCO • {t.societaIngegneria}
             </p>
           </div>
 
@@ -34,7 +36,7 @@ const Footer = () => {
 
         <div className="mt-8 pt-8 border-t border-background/10 text-center">
           <p className="text-background/50 text-sm">
-            © {currentYear} GEA Energy Srl. Tutti i diritti riservati.
+            © {currentYear} GEA Energy Srl. {t.dirittiRiservati}
           </p>
         </div>
       </div>
