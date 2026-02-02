@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Send, Loader2 } from "lucide-react";
+import { Mail, MapPin, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -86,19 +86,6 @@ const Contatti = () => {
             </p>
 
             <div className="space-y-6">
-              <a 
-                href="tel:09744610"
-                className="flex items-center gap-4 text-primary-foreground/90 hover:text-primary-foreground transition-colors group"
-              >
-                <div className="w-12 h-12 rounded-xl bg-primary-foreground/10 flex items-center justify-center group-hover:bg-primary-foreground/20 transition-colors">
-                  <Phone className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-sm text-primary-foreground/60">Telefono</p>
-                  <p className="font-semibold">0974 4610 / 327 1040803</p>
-                </div>
-              </a>
-
               <a 
                 href="mailto:info@geaenergy.it"
                 className="flex items-center gap-4 text-primary-foreground/90 hover:text-primary-foreground transition-colors group"

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoGea from "@/assets/logo-gea.jpg";
 
 const navLinks = [
   { href: "#chi-siamo", label: "Chi Siamo" },
@@ -47,20 +48,15 @@ const Header = () => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="flex items-center gap-2 group"
+            className="flex items-center group"
           >
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-              isScrolled ? "bg-primary" : "bg-primary-foreground/20"
-            }`}>
-              <Zap className={`w-5 h-5 transition-colors ${
-                isScrolled ? "text-primary-foreground" : "text-primary-foreground"
-              }`} />
-            </div>
-            <span className={`font-display text-xl font-bold transition-colors ${
-              isScrolled ? "text-foreground" : "text-primary-foreground"
-            }`}>
-              GEA Energy
-            </span>
+            <img 
+              src={logoGea} 
+              alt="GEA Energy" 
+              className={`h-12 w-auto transition-all ${
+                isScrolled ? "" : "brightness-0 invert"
+              }`}
+            />
           </a>
 
           {/* Desktop Navigation */}

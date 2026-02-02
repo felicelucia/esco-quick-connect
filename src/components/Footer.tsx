@@ -1,4 +1,5 @@
-import { Zap, Phone, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import logoGea from "@/assets/logo-gea.jpg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,28 +10,18 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo & Info */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-              <Zap className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <div>
-              <span className="font-display text-lg font-bold text-background">
-                GEA Energy
-              </span>
-              <p className="text-background/60 text-sm">
-                ESCO • Società di Ingegneria
-              </p>
-            </div>
+            <img 
+              src={logoGea} 
+              alt="GEA Energy" 
+              className="h-10 w-auto brightness-0 invert"
+            />
+            <p className="text-background/60 text-sm">
+              ESCO • Società di Ingegneria
+            </p>
           </div>
 
           {/* Quick Contacts */}
-          <div className="flex flex-col sm:flex-row items-center gap-6">
-            <a
-              href="tel:09744610"
-              className="flex items-center gap-2 text-background/80 hover:text-background transition-colors"
-            >
-              <Phone className="w-4 h-4" />
-              <span className="text-sm">0974 4610</span>
-            </a>
+          <div className="flex items-center">
             <a
               href="mailto:info@geaenergy.it"
               className="flex items-center gap-2 text-background/80 hover:text-background transition-colors"
