@@ -2,8 +2,11 @@ import { motion } from "framer-motion";
 import { ArrowDown, Zap, Building2, Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-energy.jpg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
+  const { t } = useLanguage();
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: "smooth" });
@@ -43,7 +46,7 @@ const Hero = () => {
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 text-primary-foreground text-sm font-medium">
             <Zap className="w-4 h-4" />
-            ESCO Certificata • Società di Ingegneria
+            {t.escoCertificata} • {t.societaIngegneria}
           </span>
         </motion.div>
 
@@ -63,7 +66,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="text-lg text-primary-foreground/70 mb-12 max-w-2xl mx-auto"
         >
-          Oltre 15 anni di esperienza nella consulenza energetica per aziende e privati in tutta Italia
+          {t.heroSubtitle}
         </motion.p>
 
         <motion.div
@@ -79,7 +82,7 @@ const Hero = () => {
             className="group"
           >
             <Leaf className="w-5 h-5 mr-2" />
-            Scopri i Servizi
+            {t.scopriServizi}
           </Button>
           <Button
             variant="heroOutline"
@@ -87,7 +90,7 @@ const Hero = () => {
             onClick={() => scrollToSection("contatti")}
           >
             <Building2 className="w-5 h-5 mr-2" />
-            Contattaci
+            {t.contattaci}
           </Button>
         </motion.div>
 

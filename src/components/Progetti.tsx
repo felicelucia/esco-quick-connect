@@ -1,4 +1,6 @@
-import { motion } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { motion, useAnimationFrame } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const projects = [
   "Permitting agrivoltaico 8,32 MWp sito in Maida (CZ)",
@@ -12,6 +14,43 @@ const projects = [
 ];
 
 const Progetti = () => {
+  const { t } = useLanguage();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [cardWidth, setCardWidth] = useState(0);
+  
+  // Calculate card width based on container
+  useEffect(() => {
+    const updateCardWidth = () => {
+      if (containerRef.current) {
+        // Full viewport width minus padding
+        setCardWidth(window.innerWidth);
+      }
+    };
+    
+    updateCardWidth();
+    window.addEventListener("resize", updateCardWidth);
+    return () => window.removeEventListener("resize", updateCardWidth);
+  }, []);
+
+  // Infinite scroll animation
+  useAnimationFrame((time, delta) => {
+    if (isPaused || cardWidth === 0) return;
+    
+    const speed = 0.05; // pixels per ms
+    const totalWidth = cardWidth * projects.length;
+    
+    setOffset((prev) => {
+      const newOffset = prev + delta * speed;
+      // Reset when we've scrolled one full set
+      return newOffset >= totalWidth ? 0 : newOffset;
+    });
+  });
+
+  // Duplicate projects for seamless loop
+  const allProjects = [...projects, ...projects];
+
   return (
     <section id="progetti" className="py-24 bg-background overflow-hidden">
       <div className="container mx-auto px-6 mb-12">
@@ -23,58 +62,68 @@ const Progetti = () => {
           className="text-center"
         >
           <span className="text-accent font-semibold text-sm tracking-wider uppercase mb-4 block">
-            I Nostri Progetti
+            {t.iNostriProgetti}
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Esperienze e Realizzazioni
+            {t.esperienzeRealizzazioni}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Una selezione dei progetti che abbiamo seguito con successo 
-            nel settore delle energie rinnovabili e dell'efficienza energetica.
+            {t.progettiDescription}
           </p>
         </motion.div>
       </div>
 
-      {/* Marquee Container */}
-      <div className="relative">
-        {/* Gradient overlays */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
-        
-        {/* Scrolling content */}
-        <div className="flex animate-marquee">
-          {/* First set */}
-          {projects.map((project, index) => (
+      {/* Full-width Carousel */}
+      <div 
+        ref={containerRef}
+        className="relative w-full"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <div 
+          className="flex"
+          style={{ 
+            transform: `translateX(-${offset}px)`,
+            width: `${cardWidth * allProjects.length}px`
+          }}
+        >
+          {allProjects.map((project, index) => (
             <div
-              key={`first-${index}`}
-              className="flex-shrink-0 w-[400px] mx-4"
+              key={`project-${index}`}
+              className="flex-shrink-0 px-6"
+              style={{ width: `${cardWidth}px` }}
             >
-              <div className="bg-card rounded-2xl p-6 h-full shadow-card border border-border hover:border-primary/30 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                  <span className="text-primary font-bold text-lg">{index + 1}</span>
+              <div className="bg-card rounded-3xl p-8 md:p-12 h-full shadow-card border border-border hover:border-primary/30 transition-colors mx-auto max-w-4xl">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+                    <div className="w-3 h-3 rounded-full bg-primary" />
+                  </div>
+                  <p className="text-foreground text-xl md:text-2xl font-medium leading-relaxed">
+                    {project}
+                  </p>
                 </div>
-                <p className="text-foreground font-medium leading-relaxed">
-                  {project}
-                </p>
               </div>
             </div>
           ))}
-          {/* Duplicate set for seamless loop */}
-          {projects.map((project, index) => (
-            <div
-              key={`second-${index}`}
-              className="flex-shrink-0 w-[400px] mx-4"
-            >
-              <div className="bg-card rounded-2xl p-6 h-full shadow-card border border-border hover:border-primary/30 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                  <span className="text-primary font-bold text-lg">{index + 1}</span>
-                </div>
-                <p className="text-foreground font-medium leading-relaxed">
-                  {project}
-                </p>
-              </div>
-            </div>
-          ))}
+        </div>
+
+        {/* Navigation dots */}
+        <div className="flex justify-center gap-2 mt-8">
+          {projects.map((_, index) => {
+            const currentIndex = Math.floor(offset / cardWidth) % projects.length;
+            return (
+              <button
+                key={index}
+                onClick={() => setOffset(index * cardWidth)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  currentIndex === index 
+                    ? "bg-primary w-6" 
+                    : "bg-border hover:bg-muted-foreground"
+                }`}
+                aria-label={`Go to project ${index + 1}`}
+              />
+            );
+          })}
         </div>
       </div>
     </section>

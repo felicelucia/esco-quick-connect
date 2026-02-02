@@ -1,34 +1,37 @@
 import { motion } from "framer-motion";
 import { Sun, Lightbulb, Building, Wrench } from "lucide-react";
-
-const services = [
-  {
-    icon: Sun,
-    title: "Rinnovabili",
-    description: "Progettazione e sviluppo di impianti da fonti rinnovabili per la produzione di energia pulita.",
-    features: ["Fotovoltaico", "Eolico", "Biomassa", "Biogas", "Idrogeno", "Idroelettrico"],
-  },
-  {
-    icon: Lightbulb,
-    title: "Efficienza Energetica",
-    description: "Soluzioni per ottimizzare i consumi e accedere agli incentivi statali.",
-    features: ["Bonus edilizi", "Conto termico", "Residenziale", "PMI", "Pubblica Amministrazione"],
-  },
-  {
-    icon: Wrench,
-    title: "Installazione Fotovoltaico e O&M",
-    description: "Installazione professionale di impianti fotovoltaici e servizi di Operation & Maintenance.",
-    features: ["Installazione chiavi in mano", "Manutenzione ordinaria", "Manutenzione straordinaria"],
-  },
-  {
-    icon: Building,
-    title: "Servizi di Ingegneria",
-    description: "Progettazione multidisciplinare per interventi edilizi, ambientali e idraulici.",
-    features: ["Progettazione edile", "Progettazione ambientale", "Progettazione idraulica"],
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Servizi = () => {
+  const { t } = useLanguage();
+
+  const services = [
+    {
+      icon: Sun,
+      title: t.rinnovabili,
+      description: t.rinnovabiliDesc,
+      features: t.rinnovabiliFeatures,
+    },
+    {
+      icon: Lightbulb,
+      title: t.efficienza,
+      description: t.efficienzaDesc,
+      features: t.efficienzaFeatures,
+    },
+    {
+      icon: Wrench,
+      title: t.installazione,
+      description: t.installazioneDesc,
+      features: t.installazioneFeatures,
+    },
+    {
+      icon: Building,
+      title: t.ingegneria,
+      description: t.ingegneriaDesc,
+      features: t.ingegneriaFeatures,
+    },
+  ];
+
   return (
     <section id="servizi" className="py-24 bg-background">
       <div className="container mx-auto px-6">
@@ -40,14 +43,13 @@ const Servizi = () => {
           className="text-center mb-16"
         >
           <span className="text-accent font-semibold text-sm tracking-wider uppercase mb-4 block">
-            I Nostri Servizi
+            {t.iNostriServizi}
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Soluzioni Complete per l'Energia
+            {t.soluzioniComplete}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Dalla progettazione alla realizzazione, offriamo un servizio completo 
-            per ogni esigenza di efficientamento energetico.
+            {t.serviziDescription}
           </p>
         </motion.div>
 

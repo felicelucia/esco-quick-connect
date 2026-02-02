@@ -1,30 +1,33 @@
 import { motion } from "framer-motion";
 import { Award, Users, Clock, Shield } from "lucide-react";
-
-const features = [
-  {
-    icon: Award,
-    title: "ESCO Certificata",
-    description: "Energy Service Company certificata per garantire standard di qualità elevati",
-  },
-  {
-    icon: Users,
-    title: "Team Multidisciplinare",
-    description: "Ingegneri, architetti e geometri con specifica esperienza nel settore energetico",
-  },
-  {
-    icon: Clock,
-    title: "15+ Anni di Esperienza",
-    description: "Da oltre 15 anni al fianco di aziende e privati per l'efficientamento energetico",
-  },
-  {
-    icon: Shield,
-    title: "Supporto a 360°",
-    description: "Dalla consulenza alla realizzazione, compresa l'assistenza post-vendita",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ChiSiamo = () => {
+  const { t } = useLanguage();
+
+  const features = [
+    {
+      icon: Award,
+      title: t.escoTitle,
+      description: t.escoDesc,
+    },
+    {
+      icon: Users,
+      title: t.teamTitle,
+      description: t.teamDesc,
+    },
+    {
+      icon: Clock,
+      title: t.esperienzaTitle,
+      description: t.esperienzaDesc,
+    },
+    {
+      icon: Shield,
+      title: t.supportoTitle,
+      description: t.supportoDesc,
+    },
+  ];
+
   return (
     <section id="chi-siamo" className="py-24 bg-secondary">
       <div className="container mx-auto px-6">
@@ -36,18 +39,20 @@ const ChiSiamo = () => {
           className="text-center mb-16"
         >
           <span className="text-accent font-semibold text-sm tracking-wider uppercase mb-4 block">
-            Chi Siamo
+            {t.chiSiamoTitle}
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-            La Tua Partner Energetica
+            {t.tuaPartnerEnergetica}
           </h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
-            GEA Energy è una <strong className="text-foreground">ESCO certificata</strong> e{" "}
-            <strong className="text-foreground">società di ingegneria</strong> specializzata 
-            in soluzioni di efficienza energetica. Offriamo consulenza professionale 
-            su tutto il territorio nazionale, supportando aziende e privati nel percorso 
-            verso la sostenibilità.
-          </p>
+          <p 
+            className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed"
+            dangerouslySetInnerHTML={{ 
+              __html: t.chiSiamoDescription.replace(
+                /<strong>/g, 
+                '<strong class="text-foreground">'
+              ) 
+            }}
+          />
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">

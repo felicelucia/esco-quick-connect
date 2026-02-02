@@ -6,15 +6,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
-
-const contactSchema = z.object({
-  name: z.string().trim().min(1, "Il nome è obbligatorio").max(100, "Il nome è troppo lungo"),
-  email: z.string().trim().email("Email non valida").max(255, "Email troppo lunga"),
-  phone: z.string().trim().optional(),
-  message: z.string().trim().min(1, "Il messaggio è obbligatorio").max(1000, "Il messaggio è troppo lungo"),
-});
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contatti = () => {
+  const { t } = useLanguage();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -24,6 +19,13 @@ const Contatti = () => {
     message: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const contactSchema = z.object({
+    name: z.string().trim().min(1, t.nomeObbligatorio).max(100, t.nomeTroppoLungo),
+    email: z.string().trim().email(t.emailNonValida).max(255, t.emailTroppoLunga),
+    phone: z.string().trim().optional(),
+    message: z.string().trim().min(1, t.messaggioObbligatorio).max(1000, t.messaggioTroppoLungo),
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -55,8 +57,8 @@ const Contatti = () => {
     await new Promise((resolve) => setTimeout(resolve, 1500));
     
     toast({
-      title: "Messaggio inviato!",
-      description: "Ti risponderemo il prima possibile.",
+      title: t.messaggioInviato,
+      description: t.messaggioInviatoDesc,
     });
     
     setFormData({ name: "", email: "", phone: "", message: "" });
@@ -75,14 +77,13 @@ const Contatti = () => {
             transition={{ duration: 0.6 }}
           >
             <span className="text-accent font-semibold text-sm tracking-wider uppercase mb-4 block">
-              Contattaci
+              {t.contattaciTitle}
             </span>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
-              Parliamo del Tuo Progetto
+              {t.parliamoProjetto}
             </h2>
             <p className="text-primary-foreground/80 text-lg mb-12 leading-relaxed">
-              Hai bisogno di consulenza energetica? Contattaci per una valutazione 
-              gratuita. Lavoriamo su tutto il territorio nazionale.
+              {t.contattiDescription}
             </p>
 
             <div className="space-y-6">
@@ -94,7 +95,7 @@ const Contatti = () => {
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-sm text-primary-foreground/60">Email</p>
+                  <p className="text-sm text-primary-foreground/60">{t.email}</p>
                   <p className="font-semibold">info@geaenergy.it</p>
                 </div>
               </a>
@@ -104,8 +105,8 @@ const Contatti = () => {
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-sm text-primary-foreground/60">Operativi in</p>
-                  <p className="font-semibold">Tutta Italia</p>
+                  <p className="text-sm text-primary-foreground/60">{t.operativiIn}</p>
+                  <p className="font-semibold">{t.tuttaItalia}</p>
                 </div>
               </div>
             </div>
@@ -123,14 +124,14 @@ const Contatti = () => {
               className="bg-card rounded-3xl p-8 md:p-10 shadow-lg"
             >
               <h3 className="font-display text-2xl font-bold text-foreground mb-6">
-                Richiedi Informazioni
+                {t.richiediInfo}
               </h3>
               
               <div className="space-y-5">
                 <div>
                   <Input
                     name="name"
-                    placeholder="Nome e Cognome *"
+                    placeholder={t.nomeCognome}
                     value={formData.name}
                     onChange={handleChange}
                     className={errors.name ? "border-destructive" : ""}
@@ -144,7 +145,7 @@ const Contatti = () => {
                   <Input
                     name="email"
                     type="email"
-                    placeholder="Email *"
+                    placeholder={t.emailPlaceholder}
                     value={formData.email}
                     onChange={handleChange}
                     className={errors.email ? "border-destructive" : ""}
@@ -158,7 +159,7 @@ const Contatti = () => {
                   <Input
                     name="phone"
                     type="tel"
-                    placeholder="Telefono (opzionale)"
+                    placeholder={t.telefonoOpzionale}
                     value={formData.phone}
                     onChange={handleChange}
                   />
@@ -167,7 +168,7 @@ const Contatti = () => {
                 <div>
                   <Textarea
                     name="message"
-                    placeholder="Il tuo messaggio *"
+                    placeholder={t.tuoMessaggio}
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
@@ -187,19 +188,19 @@ const Contatti = () => {
                   {isLoading ? (
                     <>
                       <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                      Invio in corso...
+                      {t.invioInCorso}
                     </>
                   ) : (
                     <>
                       <Send className="w-5 h-5 mr-2" />
-                      Invia Messaggio
+                      {t.inviaMessaggio}
                     </>
                   )}
                 </Button>
               </div>
 
               <p className="text-muted-foreground text-sm mt-4 text-center">
-                Ti risponderemo entro 24 ore lavorative
+                {t.rispondiamo24h}
               </p>
             </form>
           </motion.div>

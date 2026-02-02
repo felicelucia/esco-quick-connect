@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoGea from "@/assets/logo-gea.jpg";
-
-const navLinks = [
-  { href: "#chi-siamo", label: "Chi Siamo" },
-  { href: "#servizi", label: "Servizi" },
-  { href: "#contatti", label: "Contatti" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Header = () => {
+  const { language, setLanguage, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navLinks = [
+    { href: "#chi-siamo", label: t.chiSiamo },
+    { href: "#progetti", label: t.progetti },
+    { href: "#servizi", label: t.servizi },
+    { href: "#contatti", label: t.contatti },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +29,10 @@ const Header = () => {
     const element = document.querySelector(href);
     element?.scrollIntoView({ behavior: "smooth" });
     setIsMobileMenuOpen(false);
+  };
+
+  const toggleLanguage = () => {
+    setLanguage(language === "it" ? "en" : "it");
   };
 
   return (
@@ -72,12 +79,24 @@ const Header = () => {
                 {link.label}
               </button>
             ))}
+            
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLanguage}
+              className={`flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-accent ${
+                isScrolled ? "text-muted-foreground" : "text-primary-foreground/80"
+              }`}
+            >
+              <Globe className="w-4 h-4" />
+              {language.toUpperCase()}
+            </button>
+
             <Button
               variant={isScrolled ? "default" : "hero"}
               size="sm"
               onClick={() => scrollToSection("#contatti")}
             >
-              Richiedi Consulenza
+              {t.richiediConsulenza}
             </Button>
           </nav>
 
@@ -111,11 +130,21 @@ const Header = () => {
                 {link.label}
               </button>
             ))}
+            
+            {/* Mobile Language Toggle */}
+            <button
+              onClick={toggleLanguage}
+              className="flex items-center gap-2 text-foreground font-medium py-2"
+            >
+              <Globe className="w-4 h-4" />
+              {language === "it" ? "English" : "Italiano"}
+            </button>
+
             <Button
               className="w-full"
               onClick={() => scrollToSection("#contatti")}
             >
-              Richiedi Consulenza
+              {t.richiediConsulenza}
             </Button>
           </div>
         </motion.div>
