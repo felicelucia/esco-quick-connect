@@ -77,7 +77,7 @@ const Header = () => {
               size="sm"
               onClick={() => scrollToSection("#contatti")}
             >
-              Richiedi Preventivo
+              Richiedi Consulenza
             </Button>
           </nav>
 
@@ -115,7 +115,7 @@ const Header = () => {
               className="w-full"
               onClick={() => scrollToSection("#contatti")}
             >
-              Richiedi Preventivo
+              Richiedi Consulenza
             </Button>
           </div>
         </motion.div>
