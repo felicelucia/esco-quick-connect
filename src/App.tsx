@@ -7,6 +7,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
+// Force rebuild
 const queryClient = new QueryClient();
 
 const App = () => (
