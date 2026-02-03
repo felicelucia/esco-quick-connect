@@ -60,9 +60,7 @@ const Header = () => {
             <img 
               src={logoGea} 
               alt="GEA Energy" 
-              className={`h-12 w-auto transition-all ${
-                isScrolled ? "" : "brightness-0 invert"
-              }`}
+              className="h-12 w-auto transition-all"
             />
           </a>
 

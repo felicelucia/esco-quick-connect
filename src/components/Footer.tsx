@@ -15,7 +15,7 @@ const Footer = () => {
             <img 
               src={logoGea} 
               alt="GEA Energy" 
-              className="h-10 w-auto brightness-0 invert"
+              className="h-10 w-auto"
             />
             <p className="text-background/60 text-sm">
               ESCO • {t.societaIngegneria}

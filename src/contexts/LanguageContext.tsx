@@ -100,7 +100,7 @@ const translations: Record<Language, Translations> = {
     
     // Chi Siamo
     chiSiamoTitle: "Chi Siamo",
-    tuaPartnerEnergetica: "La Tua Partner Energetica",
+    tuaPartnerEnergetica: "Il Tuo Partner Energetico",
     chiSiamoDescription: "GEA Energy è una <strong>ESCO certificata</strong> e <strong>società di ingegneria</strong> specializzata in soluzioni di efficienza energetica. Offriamo consulenza professionale su tutto il territorio nazionale, supportando aziende e privati nel percorso verso la sostenibilità.",
     escoTitle: "ESCO Certificata",
     escoDesc: "Energy Service Company certificata per garantire standard di qualità elevati",
