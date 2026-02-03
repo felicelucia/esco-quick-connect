@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contatti = () => {
   const { t } = useLanguage();
@@ -53,23 +54,35 @@ const Contatti = () => {
 
     setIsLoading(true);
     
-    // Create mailto link with form data
-    const subject = encodeURIComponent(`Richiesta informazioni da ${result.data.name}`);
-    const body = encodeURIComponent(
-      `Nome: ${result.data.name}\nEmail: ${result.data.email}\nTelefono: ${result.data.phone || "Non specificato"}\n\nMessaggio:\n${result.data.message}`
-    );
-    
-    window.location.href = `mailto:info@geaenergy.it?subject=${subject}&body=${body}`;
-    
-    // Show success toast after a brief delay
-    setTimeout(() => {
+    try {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: result.data.name,
+          email: result.data.email,
+          phone: result.data.phone || "",
+          message: result.data.message,
+        },
+      });
+
+      if (error) {
+        throw error;
+      }
+
       toast({
         title: t.messaggioInviato,
         description: t.messaggioInviatoDesc,
       });
       setFormData({ name: "", email: "", phone: "", message: "" });
+    } catch (error) {
+      console.error("Error sending email:", error);
+      toast({
+        title: "Errore",
+        description: "Si è verificato un errore nell'invio del messaggio. Riprova più tardi.",
+        variant: "destructive",
+      });
+    } finally {
       setIsLoading(false);
-    }, 500);
+    }
   };
 
   return (
