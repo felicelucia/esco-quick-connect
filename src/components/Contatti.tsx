@@ -53,16 +53,23 @@ const Contatti = () => {
 
     setIsLoading(true);
     
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    // Create mailto link with form data
+    const subject = encodeURIComponent(`Richiesta informazioni da ${result.data.name}`);
+    const body = encodeURIComponent(
+      `Nome: ${result.data.name}\nEmail: ${result.data.email}\nTelefono: ${result.data.phone || "Non specificato"}\n\nMessaggio:\n${result.data.message}`
+    );
     
-    toast({
-      title: t.messaggioInviato,
-      description: t.messaggioInviatoDesc,
-    });
+    window.location.href = `mailto:info@geaenergy.it?subject=${subject}&body=${body}`;
     
-    setFormData({ name: "", email: "", phone: "", message: "" });
-    setIsLoading(false);
+    // Show success toast after a brief delay
+    setTimeout(() => {
+      toast({
+        title: t.messaggioInviato,
+        description: t.messaggioInviatoDesc,
+      });
+      setFormData({ name: "", email: "", phone: "", message: "" });
+      setIsLoading(false);
+    }, 500);
   };
 
   return (
