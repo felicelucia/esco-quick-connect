@@ -94,7 +94,7 @@ const translations: Record<Language, Translations> = {
     // Hero
     escoCertificata: "ESCO Certificata",
     societaIngegneria: "Società di Ingegneria",
-    heroSubtitle: "Oltre 15 anni di esperienza nella consulenza energetica per aziende e privati in tutta Italia",
+    heroSubtitle: "Oltre 20 anni di esperienza nella consulenza energetica per aziende e privati in tutta Italia",
     scopriServizi: "Scopri i Servizi",
     contattaci: "Contattaci",
     
@@ -104,22 +104,22 @@ const translations: Record<Language, Translations> = {
     chiSiamoDescription: "GEA Energy è una <strong>ESCO certificata</strong> e <strong>società di ingegneria</strong> specializzata in soluzioni di efficienza energetica. Offriamo consulenza professionale su tutto il territorio nazionale, supportando aziende e privati nel percorso verso la sostenibilità.",
     escoTitle: "ESCO Certificata",
     escoDesc: "Energy Service Company certificata per garantire standard di qualità elevati",
-    teamTitle: "Team Multidisciplinare",
+    teamTitle: "Team di Ingegneria Multidisciplinare",
     teamDesc: "Ingegneri, architetti e geometri con specifica esperienza nel settore energetico",
-    esperienzaTitle: "15+ Anni di Esperienza",
-    esperienzaDesc: "Da oltre 15 anni al fianco di aziende e privati per l'efficientamento energetico",
+    esperienzaTitle: "20+ Anni di Esperienza",
+    esperienzaDesc: "Da oltre 20 anni al fianco di aziende e privati per l'efficientamento energetico",
     supportoTitle: "Supporto a 360°",
     supportoDesc: "Dalla consulenza alla realizzazione, compresa l'assistenza post-vendita",
     
     // Progetti
     iNostriProgetti: "I Nostri Progetti",
-    esperienzeRealizzazioni: "Esperienze e Realizzazioni",
+    esperienzeRealizzazioni: "Principali Esperienze e Realizzazioni",
     progettiDescription: "Una selezione dei progetti che abbiamo seguito con successo nel settore delle energie rinnovabili e dell'efficienza energetica.",
     
     // Servizi
     iNostriServizi: "I Nostri Servizi",
-    soluzioniComplete: "Soluzioni Complete per l'Energia",
-    serviziDescription: "Dalla progettazione alla realizzazione, offriamo un servizio completo per ogni esigenza di efficientamento energetico.",
+    soluzioniComplete: "Soluzioni complete per l'energia e l'ambiente",
+    serviziDescription: "Dalla progettazione alla realizzazione, offriamo un servizio completo per ogni esigenza.",
     rinnovabili: "Rinnovabili",
     rinnovabiliDesc: "Progettazione e sviluppo di impianti da fonti rinnovabili per la produzione di energia pulita.",
     rinnovabiliFeatures: ["Fotovoltaico", "Eolico", "Biomassa", "Biogas", "Idrogeno", "Idroelettrico"],
@@ -173,7 +173,7 @@ const translations: Record<Language, Translations> = {
     // Hero
     escoCertificata: "Certified ESCO",
     societaIngegneria: "Engineering Firm",
-    heroSubtitle: "Over 15 years of experience in energy consulting for businesses and individuals throughout Italy",
+    heroSubtitle: "Over 20 years of experience in energy consulting for businesses and individuals throughout Italy",
     scopriServizi: "Discover Services",
     contattaci: "Contact Us",
     
@@ -183,22 +183,22 @@ const translations: Record<Language, Translations> = {
     chiSiamoDescription: "GEA Energy is a <strong>certified ESCO</strong> and <strong>engineering firm</strong> specialized in energy efficiency solutions. We offer professional consulting throughout Italy, supporting businesses and individuals on their path to sustainability.",
     escoTitle: "Certified ESCO",
     escoDesc: "Certified Energy Service Company ensuring high quality standards",
-    teamTitle: "Multidisciplinary Team",
+    teamTitle: "Multidisciplinary Engineering Team",
     teamDesc: "Engineers, architects and surveyors with specific experience in the energy sector",
-    esperienzaTitle: "15+ Years of Experience",
-    esperienzaDesc: "Over 15 years alongside businesses and individuals for energy efficiency",
+    esperienzaTitle: "20+ Years of Experience",
+    esperienzaDesc: "Over 20 years alongside businesses and individuals for energy efficiency",
     supportoTitle: "360° Support",
     supportoDesc: "From consulting to implementation, including after-sales assistance",
     
     // Progetti
     iNostriProgetti: "Our Projects",
-    esperienzeRealizzazioni: "Experience & Achievements",
+    esperienzeRealizzazioni: "Main Experience & Achievements",
     progettiDescription: "A selection of projects we have successfully completed in the renewable energy and energy efficiency sector.",
     
     // Servizi
     iNostriServizi: "Our Services",
-    soluzioniComplete: "Complete Energy Solutions",
-    serviziDescription: "From design to implementation, we offer a complete service for every energy efficiency need.",
+    soluzioniComplete: "Complete solutions for energy and environment",
+    serviziDescription: "From design to implementation, we offer a complete service for every need.",
     rinnovabili: "Renewables",
     rinnovabiliDesc: "Design and development of renewable energy plants for clean energy production.",
     rinnovabiliFeatures: ["Photovoltaic", "Wind", "Biomass", "Biogas", "Hydrogen", "Hydroelectric"],
